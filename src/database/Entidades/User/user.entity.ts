@@ -10,9 +10,9 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 50 })
+  @Column({ length: 100 })
   name: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 191 })
   email: string;
 }
