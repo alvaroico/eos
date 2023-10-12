@@ -14,7 +14,12 @@ describe('TarefasController', () => {
         TarefasService,
         {
           provide: 'TAREFAS_REPOSITORY',
-          useValue: {}, // replace with actual repository instance
+          useValue: {
+            create: jest.fn().mockResolvedValue({
+              id: 1,
+              description: 'Test tarefa',
+            }),
+          },
         },
       ],
     }).compile();

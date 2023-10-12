@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Users {
+export class User {
   constructor(name: string, email: string, id?: number) {
     this.id = id;
     this.name = name;
@@ -10,9 +10,9 @@ export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
+  @Column({ length: 50 })
   name: string;
 
-  @Column({ length: 500 })
+  @Column({ length: 100 })
   email: string;
 }

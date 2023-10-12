@@ -4,12 +4,12 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { TarefasService } from './database/Entidades/tarefas/tarefas.service';
 import { TarefasController } from './database/Entidades/tarefas/tarefas.controller';
-import { UsersController } from './database/Entidades/User/users.controller';
-import { UsersService } from './database/Entidades/User/users.service';
+import { UserController } from './database/Entidades/User/user.controller';
+import { UserService } from './database/Entidades/User/user.service';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [AppController, TarefasController, UsersController],
-  providers: [AppService, TarefasService, UsersService],
+  controllers: [AppController, TarefasController, UserController],
+  providers: [AppService, TarefasService, UserService],
 })
 export class AppModule {}
