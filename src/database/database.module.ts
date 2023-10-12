@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { databaseProviders } from './database.providers';
-import { UserProviders } from './Entidades/User/user.providers';
-import { TarefasProviders } from './Entidades/tarefas/tarefas.providers';
-import { PostProviders } from './Entidades/Post/post.providers';
-import { CommentProviders } from './Entidades/Comment/comment.providers';
+import { UserProviders } from '../entity/User/user.providers';
+import { TarefasProviders } from '../entity/tarefas/tarefas.providers';
+import { PostProviders } from '../entity/Post/post.providers';
+import { CommentProviders } from '../entity/Comment/comment.providers';
 
 @Module({
   providers: [

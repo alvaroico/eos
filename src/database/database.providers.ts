@@ -1,7 +1,7 @@
-import { Post } from './Entidades/Post/post.entity';
-import { User } from './Entidades/User/user.entity';
-import { Tarefas } from './Entidades/tarefas/tarefas.entity';
-import { Comment } from './Entidades/Comment/comment.entity';
+import { Post } from '../entity/Post/post.entity';
+import { User } from '../entity/User/user.entity';
+import { Tarefas } from '../entity/tarefas/tarefas.entity';
+import { Comment } from '../entity/Comment/comment.entity';
 import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
