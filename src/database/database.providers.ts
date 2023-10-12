@@ -1,6 +1,7 @@
 import { Post } from './Entidades/Post/post.entity';
 import { User } from './Entidades/User/user.entity';
 import { Tarefas } from './Entidades/tarefas/tarefas.entity';
+import { Comment } from './Entidades/Comment/comment.entity';
 import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
@@ -16,7 +17,7 @@ export const databaseProviders = [
         database: 'mydatabase',
         synchronize: true,
         logging: true,
-        entities: [Tarefas, User, Post],
+        entities: [Tarefas, User, Post, Comment],
         subscribers: [],
         migrations: [],
       });

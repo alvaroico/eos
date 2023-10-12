@@ -6,18 +6,19 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { User } from '../User/user.entity';
+import { Post } from '../Post/post.entity';
 
 @Entity()
-export class Post {
+export class Comment {
   constructor(
     user_id: number,
-    title: string,
+    post_id: number,
     description: string,
     id?: number,
   ) {
     this.id = id;
     this.user_id = user_id;
-    this.title = title;
+    this.post_id = post_id;
     this.description = description;
   }
   @PrimaryGeneratedColumn()
@@ -27,8 +28,9 @@ export class Post {
   @JoinColumn({ name: 'user_id' })
   user_id: number;
 
-  @Column({ length: 100 })
-  title: string;
+  @ManyToOne(() => Post, (post) => post.id)
+  @JoinColumn({ name: 'post_id' })
+  post_id: number;
 
   @Column({ type: 'text' })
   description: string;

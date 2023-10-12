@@ -33,7 +33,7 @@ describe('PostController', () => {
   describe('getAll', () => {
     it('should return an array of posts', async () => {
       const result: Post[] = [
-        { id: 1, userId: 1, title: 'Test Post', description: 'Test Content' },
+        { id: 1, user_id: 1, title: 'Test Post', description: 'Test Content' },
       ];
       jest.spyOn(service, 'findAll').mockImplementation(async () => result);
 

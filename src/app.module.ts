@@ -8,6 +8,8 @@ import { UserController } from './database/Entidades/User/user.controller';
 import { UserService } from './database/Entidades/User/user.service';
 import { PostController } from './database/Entidades/Post/post.controller';
 import { PostService } from './database/Entidades/Post/post.service';
+import { CommentController } from './database/Entidades/Comment/comment.controller';
+import { CommentService } from './database/Entidades/Comment/comment.service';
 
 @Module({
   imports: [DatabaseModule],
@@ -16,7 +18,14 @@ import { PostService } from './database/Entidades/Post/post.service';
     TarefasController,
     UserController,
     PostController,
+    CommentController,
   ],
-  providers: [AppService, TarefasService, UserService, PostService],
+  providers: [
+    AppService,
+    TarefasService,
+    UserService,
+    PostService,
+    CommentService,
+  ],
 })
 export class AppModule {}
