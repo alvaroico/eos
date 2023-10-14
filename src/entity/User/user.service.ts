@@ -45,7 +45,6 @@ export class UserService {
     if (!user) {
       throw new HttpException('Usuário não encontrado', HttpStatus.NOT_FOUND);
     }
-    console.log(user.id);
 
     const passwordEntity = await this.passwordRepository.findOne({
       where: { user_id: user.id },
