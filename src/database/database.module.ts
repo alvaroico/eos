@@ -4,6 +4,7 @@ import { UserProviders } from '../entity/User/user.providers';
 import { TarefasProviders } from '../entity/tarefas/tarefas.providers';
 import { PostProviders } from '../entity/Post/post.providers';
 import { CommentProviders } from '../entity/Comment/comment.providers';
+import { PasswordProviders } from 'src/entity/Password/password.providers';
 
 @Module({
   providers: [
@@ -12,6 +13,7 @@ import { CommentProviders } from '../entity/Comment/comment.providers';
     ...UserProviders,
     ...PostProviders,
     ...CommentProviders,
+    ...PasswordProviders,
   ],
   exports: [
     ...databaseProviders,
@@ -19,6 +21,7 @@ import { CommentProviders } from '../entity/Comment/comment.providers';
     ...UserProviders,
     ...PostProviders,
     ...CommentProviders,
+    ...PasswordProviders,
   ],
 })
 export class DatabaseModule {}

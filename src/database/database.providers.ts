@@ -3,6 +3,7 @@ import { User } from '../entity/User/user.entity';
 import { Tarefas } from '../entity/tarefas/tarefas.entity';
 import { Comment } from '../entity/Comment/comment.entity';
 import { DataSource } from 'typeorm';
+import { Password } from 'src/entity/Password/password.entity';
 
 export const databaseProviders = [
   {
@@ -17,7 +18,7 @@ export const databaseProviders = [
         database: 'mydatabase',
         synchronize: true,
         logging: true,
-        entities: [Tarefas, User, Post, Comment],
+        entities: [Tarefas, User, Post, Comment, Password],
         subscribers: [],
         migrations: [],
       });
