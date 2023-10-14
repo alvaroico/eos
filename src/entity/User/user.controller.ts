@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -17,5 +17,10 @@ export class UserController {
   ): Promise<User> {
     const { user, password } = request;
     return await this.userService.create(user, password);
+  }
+  @Post('/login')
+  async login(@Body() request: { email: string; password: string }) {
+    const { email, password } = request;
+    return await this.userService.checkPassword(email, password);
   }
 }
