@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, UseGuards, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  Req,
+  Put,
+} from '@nestjs/common';
 import { Post as PostEntity } from './post.entity';
 import { PostService } from './post.service';
 import { AuthGuard } from 'src/guard/auth.guard';
@@ -27,6 +35,19 @@ export class PostController {
     @Req() request: Request,
   ): Promise<PostEntity> {
     return await this.postService.newPost(
+      body.post,
+      this.jwtService.decode(
+        request.headers.authorization.split(' ')[1],
+      ) as ITokenJWT,
+    );
+  }
+
+  @Put()
+  async updatePost(
+    @Body() body: { post: PostEntity },
+    @Req() request: Request,
+  ): Promise<PostEntity | { mensagem: string }> {
+    return await this.postService.update(
       body.post,
       this.jwtService.decode(
         request.headers.authorization.split(' ')[1],
