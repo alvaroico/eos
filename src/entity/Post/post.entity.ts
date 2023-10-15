@@ -25,6 +25,7 @@ export class Post {
 
   @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: 'user_id' })
+  @Column({ nullable: false })
   user_id: number;
 
   @Column({ length: 100 })

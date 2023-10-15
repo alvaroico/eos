@@ -10,9 +10,10 @@ import { PostController } from './entity/Post/post.controller';
 import { PostService } from './entity/Post/post.service';
 import { CommentController } from './entity/Comment/comment.controller';
 import { CommentService } from './entity/Comment/comment.service';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [JwtModule.register({}), DatabaseModule],
   controllers: [
     AppController,
     TarefasController,
