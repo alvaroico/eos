@@ -1,0 +1,47 @@
+version: "3.1"
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      redeInterna:
+        ipv4_address: 172.16.239.10
+        ipv6_address: "2001:3984:3940::10"
+    environment:
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_USER: "admin"
+      POSTGRES_DB: "mydatabase"
+      POSTGRES_HOST: "postgresql"
+      POSTGRES_PORT: "5432"
+  PostgreSQL:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    networks:
+      redeInterna:
+        ipv4_address: 172.16.239.11
+        ipv6_address: "2001:3984:3940::11"
+    # volumes:
+    #   - PostgreSQL:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_USER: "admin"
+      POSTGRES_DB: "mydatabase"
+      POSTGRES_HOST: "postgresql"
+      POSTGRES_PORT: "5432"
+
+
+networks:
+  redeInterna:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.239.0/24
+          gateway: 172.16.239.1
+        - subnet: "2001:3984:3940::/64"
+          gateway: "2001:3984:3940::1"
