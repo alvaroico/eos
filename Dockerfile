@@ -4,4 +4,4 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-CMD ["sleep", "10", "&&", "node", "dist/main.js"]
+CMD ["node", "dist/main.js"]

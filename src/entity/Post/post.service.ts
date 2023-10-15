@@ -45,6 +45,9 @@ export class PostService {
     file: Express.Multer.File,
   ): Promise<Post> {
     // Todo: migrar para servidor butbucket
+    if (!file) {
+      throw new HttpException('Arquivo não enviado', HttpStatus.BAD_REQUEST);
+    }
     const uploadDir = `${process.cwd()}${process.env.UPLOAD_DIR}`;
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);

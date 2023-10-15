@@ -15,6 +15,9 @@ services:
       POSTGRES_DB: "mydatabase"
       POSTGRES_HOST: "postgresql"
       POSTGRES_PORT: "5432"
+      MAILTRAP_USERNAME: "161893c3287cea"
+      MAILTRAP_API_KEY: "7439d291cc0b32"
+      UPLOAD_DIR: "/public/images"
   PostgreSQL:
     image: postgres:latest
     ports:
