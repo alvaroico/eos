@@ -6,7 +6,6 @@ import { Tarefas } from '../entity/tarefas/tarefas.entity';
 import { Comment } from '../entity/Comment/comment.entity';
 import { DataSource } from 'typeorm';
 import { Password } from 'src/entity/Password/password.entity';
-console.log(process.env);
 
 export const databaseProviders = [
   {

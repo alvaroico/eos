@@ -3,6 +3,8 @@ import { Repository } from 'typeorm';
 import { Comment } from './comment.entity';
 import { ITokenJWT } from 'src/guard/auth.guard.interface';
 import { Post } from '../Post/post.entity';
+import { User } from '../User/user.entity';
+import { sendEmail } from 'src/email/inde';
 
 @Injectable()
 export class CommentService {
@@ -11,6 +13,8 @@ export class CommentService {
     private commentRepository: Repository<Comment>,
     @Inject('POST_REPOSITORY')
     private postRepository: Repository<Post>,
+    @Inject('USER_REPOSITORY')
+    private userRepository: Repository<User>,
   ) {}
 
   async findAll(): Promise<Comment[]> {
@@ -25,7 +29,21 @@ export class CommentService {
       throw new HttpException('Post não encontrado', HttpStatus.NOT_FOUND);
     }
     comment.user_id = token.id;
-    return this.commentRepository.save(comment);
+
+    const user = await this.userRepository.findOne({
+      where: { id: post.user_id },
+    });
+    if (!user) {
+      throw new HttpException('Usuário não encontrado', HttpStatus.NOT_FOUND);
+    }
+    const newComment = await this.commentRepository.save(comment);
+    if (user.email)
+      await sendEmail(
+        user.email,
+        'Novo comentário',
+        'Você recebeu um novo comentário ' + comment.description,
+      );
+    return newComment;
   }
 
   async editComment(
