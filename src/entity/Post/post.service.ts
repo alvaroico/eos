@@ -9,9 +9,6 @@ export class PostService {
     @Inject('POST_REPOSITORY')
     private postRepository: Repository<Post>,
   ) {}
-  async findAll(): Promise<Post[]> {
-    return this.postRepository.find();
-  }
   async findOne(id: number): Promise<Post> {
     const post = await this.postRepository.findOne({ where: { id } });
     if (!post) {

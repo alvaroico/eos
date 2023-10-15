@@ -40,11 +40,6 @@ export class PostController {
     return await this.postService.dislikesId(parseInt(param.id));
   }
 
-  @Get()
-  async getAll(): Promise<PostEntity[]> {
-    return await this.postService.findAll();
-  }
-
   @Post()
   async newPost(
     @Body() body: { post: PostEntity },

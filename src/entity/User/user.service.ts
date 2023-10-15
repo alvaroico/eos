@@ -15,10 +15,6 @@ export class UserService {
     private passwordRepository: Repository<Password>,
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find();
-  }
-
   async create(user: User, password: string): Promise<User> {
     const exists = await this.userRepository.findOne({
       where: { email: user.email },

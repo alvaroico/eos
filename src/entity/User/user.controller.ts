@@ -6,11 +6,6 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()
-  async getAll(): Promise<User[]> {
-    return await this.userService.findAll();
-  }
-
   @Post()
   async create(
     @Body() request: { user: User; password: string },
