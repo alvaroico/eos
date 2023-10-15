@@ -2,6 +2,7 @@ import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Post } from './post.entity';
 import { ITokenJWT } from 'src/guard/auth.guard.interface';
+import * as fs from 'fs';
 
 @Injectable()
 export class PostService {
@@ -37,10 +38,43 @@ export class PostService {
     this.postRepository.save(post);
     return post;
   }
-  async newPost(post: Post, token: ITokenJWT): Promise<Post> {
+
+  async newPost(
+    post: Post,
+    token: ITokenJWT,
+    file: Express.Multer.File,
+  ): Promise<Post> {
+    // Todo: migrar para servidor butbucket
+    const uploadDir = `${process.cwd()}${process.env.UPLOAD_DIR}`;
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+    console.log(file);
+    const tiposValidos = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (!tiposValidos.includes(file.mimetype)) {
+      throw new HttpException(
+        'Tipo de arquivo inválido',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const tamanhoMaximo = 1024 * 1024 * 2;
+    if (file.size > tamanhoMaximo) {
+      throw new HttpException(
+        'Tamanho máximo de arquivo excedido',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    const formato = file.originalname.split('.').pop();
+    const fileName = `${token.id}-${Date.now()}.${formato}`;
+    fs.writeFileSync(`${uploadDir}/${fileName}`, file.buffer);
+
     post.user_id = token.id;
+    post.file = fileName;
+
     return this.postRepository.save(post);
   }
+
   async update(
     editPost: Post,
     token: ITokenJWT,
@@ -48,7 +82,6 @@ export class PostService {
     const post = await this.postRepository.findOne({
       where: { id: editPost.id },
     });
-    console.log(post);
     if (!post) {
       throw new HttpException('Post não encontrado', HttpStatus.NOT_FOUND);
     }

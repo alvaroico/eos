@@ -16,9 +16,11 @@ export class Post {
     views: number,
     likes: number,
     dislikes: number,
+    file?: string,
     id?: number,
   ) {
     this.id = id;
+    this.file = file;
     this.user_id = user_id;
     this.title = title;
     this.description = description;
@@ -48,4 +50,7 @@ export class Post {
 
   @Column({ nullable: true })
   dislikes: number;
+
+  @Column({ nullable: true })
+  file: string;
 }

@@ -7,14 +7,17 @@ import {
   Req,
   Put,
   Param,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { Post as PostEntity } from './post.entity';
 import { PostService } from './post.service';
 import { AuthGuard } from 'src/guard/auth.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { Request } from 'express';
+import { Request, Express } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import { ITokenJWT } from 'src/guard/auth.guard.interface';
+import { FileInterceptor } from '@nestjs/platform-express/multer';
 
 @ApiBearerAuth()
 @Controller('/post')
@@ -41,15 +44,18 @@ export class PostController {
   }
 
   @Post()
+  @UseInterceptors(FileInterceptor('file'))
   async newPost(
     @Body() body: { post: PostEntity },
     @Req() request: Request,
+    @UploadedFile() file: Express.Multer.File,
   ): Promise<PostEntity> {
     return await this.postService.newPost(
       body.post,
       this.jwtService.decode(
         request.headers.authorization.split(' ')[1],
       ) as ITokenJWT,
+      file,
     );
   }
 
