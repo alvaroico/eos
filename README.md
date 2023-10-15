@@ -16,7 +16,7 @@ O projeto foi criado com [Nest](https://github.com/nestjs/nest) framework TypeSc
 # o banco de dados não está em um volume
 $ docker compose up -d --force-recreate --build
 ```
-![npm i](/anexos/Gravacao-de-tela-de-2023-10-15-20-44-02.webm)
+![npm i](/anexos/gravacao-de-tela-de-2023-10-15-20-44-02.webm)
 
 # run
 
