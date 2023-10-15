@@ -6,6 +6,7 @@ import {
   UseGuards,
   Req,
   Put,
+  Param,
 } from '@nestjs/common';
 import { Post as PostEntity } from './post.entity';
 import { PostService } from './post.service';
@@ -23,6 +24,11 @@ export class PostController {
     private readonly postService: PostService,
     private readonly jwtService: JwtService,
   ) {}
+
+  @Get('/:id')
+  async getId(@Param() param: { id: string }): Promise<PostEntity> {
+    return await this.postService.findOne(parseInt(param.id));
+  }
 
   @Get()
   async getAll(): Promise<PostEntity[]> {

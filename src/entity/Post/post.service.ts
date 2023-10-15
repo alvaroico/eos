@@ -12,6 +12,15 @@ export class PostService {
   async findAll(): Promise<Post[]> {
     return this.postRepository.find();
   }
+  async findOne(id: number): Promise<Post> {
+    const post = await this.postRepository.findOne({ where: { id } });
+    if (!post) {
+      throw new HttpException('Post não encontrado', HttpStatus.NOT_FOUND);
+    }
+    post.views++;
+    this.postRepository.save(post);
+    return post;
+  }
   async newPost(post: Post, token: ITokenJWT): Promise<Post> {
     post.user_id = token.id;
     return this.postRepository.save(post);
