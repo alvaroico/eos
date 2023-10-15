@@ -11,9 +11,17 @@ import { CommentService } from './entity/Comment/comment.service';
 import { JwtModule } from '@nestjs/jwt';
 import { FeedService } from './entity/feed/feed.service';
 import { FeedController } from './entity/feed/feed.controller';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
-  imports: [JwtModule.register({}), DatabaseModule],
+  imports: [
+    JwtModule.register({}),
+    DatabaseModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }),
+  ],
   controllers: [
     AppController,
     UserController,

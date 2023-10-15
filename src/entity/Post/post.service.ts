@@ -49,7 +49,6 @@ export class PostService {
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);
     }
-    console.log(file);
     const tiposValidos = ['image/jpeg', 'image/png', 'image/jpg'];
     if (!tiposValidos.includes(file.mimetype)) {
       throw new HttpException(
