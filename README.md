@@ -17,9 +17,7 @@ O projeto foi criado com [Nest](https://github.com/nestjs/nest) framework TypeSc
 $ docker compose up -d --force-recreate --build
 ```
 
-<video width="320" height="240" controls>
-  <source src="/anexos/gravacao-de-tela-de-2023-10-15-20-44-02.webm" type="video/webm">
-</video>
+![docker compose up -d --force-recreate --build](/anexos/gravacao-de-tela-de-2023-10-15-20-44-02.gif)
 
 # run
 
