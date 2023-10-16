@@ -12,11 +12,14 @@ O projeto foi criado com [Nest](https://github.com/nestjs/nest) framework TypeSc
 ## Execução do código em container
 
 ```bash
-# Se o container cair rode novamente o contêiner visto que 
+# Se o container cair rode novamente o contêiner visto que
 # o banco de dados não está em um volume
 $ docker compose up -d --force-recreate --build
 ```
-![npm i](/anexos/gravacao-de-tela-de-2023-10-15-20-44-02.webm)
+
+<video width="320" height="240" controls>
+  <source src="/anexos/gravacao-de-tela-de-2023-10-15-20-44-02.webm" type="video/webm">
+</video>
 
 # run
 
