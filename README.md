@@ -104,6 +104,9 @@ $ docker compose up -d --force-recreate --build
 - POST http://localhost:3000/comment
   - O token deve ser passado no header da requisição
   - Criação de um comentário em um post
+  - Enviado email para o usuário proprietário do Post
+
+![Email](/anexos/Captura-de-tela-de-2023-10-15-21-57-14.png)
 
 ```json
 {
