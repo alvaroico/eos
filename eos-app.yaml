@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/alvaroico/eos.git'
-    targetRevision: main
+    targetRevision: alvaroico
     path: k8s
   destination:
     server: 'https://kubernetes.default.svc'
